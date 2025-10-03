@@ -1,0 +1,107 @@
+import logging
+import time
+import random
+import json
+import sqlite3
+import pandas as pd
+from datetime import datetime
+
+# ------------------------
+# Configuração do logging
+# ------------------------
+logging.basicConfig(
+    filename="logs.txt",
+    level=logging.DEBUG,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S"
+)
+
+# ------------------------
+# Dados de exemplo
+# ------------------------
+users = ["Joao", "Maria", "Carlos", "Ana"]
+ips = ["192.168.0.10", "192.168.0.11", "10.0.0.5", "172.16.1.22"]
+endpoints = ["/login", "/dashboard", "/profile", "/api/data", "/logout"]
+databases = ["users_db", "orders_db", "analytics_db"]
+http_methods = ["GET", "POST"]
+
+info_messages = [
+    lambda: f"User {random.choice(users)} logged in from {random.choice(ips)}",
+    lambda: f"HTTP {random.choice([200, 201, 204])} {random.choice(http_methods)} request to {random.choice(endpoints)}",
+    lambda: f"Query executed successfully on {random.choice(databases)}"
+]
+
+warning_messages = [
+    lambda: f"Slow query detected on {random.choice(databases)} (took {random.randint(500, 2000)} ms)",
+    lambda: f"High memory usage on server {random.choice(ips)}",
+    lambda: f"Unusual login attempt for user {random.choice(users)} from {random.choice(ips)}"
+]
+
+error_messages = [
+    lambda: f"Failed to connect to database {random.choice(databases)}",
+    lambda: f"Authentication error for user {random.choice(users)} from {random.choice(ips)}",
+    lambda: f"HTTP {random.choice([500, 502, 503])} {random.choice(http_methods)} error at {random.choice(endpoints)}",
+    lambda: f"Disk write failure on server {random.choice(ips)}"
+]
+
+# ------------------------
+# Lista em memória para exportação
+# ------------------------
+logs_mem = []
+
+# ------------------------
+# Funções de exportação
+# ------------------------
+def export_json():
+    with open("logs.json", "w", encoding="utf-8") as f:
+        json.dump(logs_mem, f, ensure_ascii=False, indent=4)
+
+def export_excel():
+    df = pd.DataFrame(logs_mem)
+    df.to_excel("logs.xlsx", index=False)
+
+def export_sqlite():
+    con = sqlite3.connect("logs.db")
+    df = pd.DataFrame(logs_mem)
+    df.to_sql("logs", con, if_exists="replace", index=False)
+    con.close()
+
+# ------------------------
+# Loop principal de geração de logs
+# ------------------------
+try:
+    while True:
+        level = random.choice(["INFO", "WARNING", "ERROR"])
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+        if level == "INFO":
+            msg = random.choice(info_messages)()
+            logging.info(msg)
+        elif level == "WARNING":
+            msg = random.choice(warning_messages)()
+            logging.warning(msg)
+        else:
+            msg = random.choice(error_messages)()
+            logging.error(msg)
+
+        # Guardar em memória
+        logs_mem.append({
+            "timestamp": timestamp,
+            "level": level,
+            "message": msg
+        })
+
+        # Exportar de 10 em 10 logs (opcional)
+        if len(logs_mem) % 10 == 0:
+            export_json()
+            export_excel()
+            export_sqlite()
+
+        time.sleep(1)
+
+except KeyboardInterrupt:
+    print("Programa interrompido. Exportando logs finais...")
+    export_json()
+    export_excel()
+    export_sqlite()
+    print("Exportação concluída!")

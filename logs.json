@@ -1,0 +1,112 @@
+[
+    {
+        "timestamp": "2025-10-03 16:57:12",
+        "level": "INFO",
+        "message": "User Maria logged in from 10.0.0.5"
+    },
+    {
+        "timestamp": "2025-10-03 16:57:13",
+        "level": "INFO",
+        "message": "Query executed successfully on analytics_db"
+    },
+    {
+        "timestamp": "2025-10-03 16:57:14",
+        "level": "ERROR",
+        "message": "Failed to connect to database users_db"
+    },
+    {
+        "timestamp": "2025-10-03 16:57:15",
+        "level": "WARNING",
+        "message": "High memory usage on server 192.168.0.11"
+    },
+    {
+        "timestamp": "2025-10-03 16:57:16",
+        "level": "WARNING",
+        "message": "Slow query detected on analytics_db (took 854 ms)"
+    },
+    {
+        "timestamp": "2025-10-03 16:57:17",
+        "level": "WARNING",
+        "message": "Unusual login attempt for user Carlos from 192.168.0.11"
+    },
+    {
+        "timestamp": "2025-10-03 16:57:19",
+        "level": "INFO",
+        "message": "User Maria logged in from 192.168.0.11"
+    },
+    {
+        "timestamp": "2025-10-03 16:57:20",
+        "level": "ERROR",
+        "message": "Disk write failure on server 192.168.0.11"
+    },
+    {
+        "timestamp": "2025-10-03 16:57:21",
+        "level": "ERROR",
+        "message": "HTTP 500 GET error at /api/data"
+    },
+    {
+        "timestamp": "2025-10-03 16:57:22",
+        "level": "INFO",
+        "message": "HTTP 204 GET request to /logout"
+    },
+    {
+        "timestamp": "2025-10-03 16:57:24",
+        "level": "WARNING",
+        "message": "High memory usage on server 10.0.0.5"
+    },
+    {
+        "timestamp": "2025-10-03 16:57:25",
+        "level": "INFO",
+        "message": "User Ana logged in from 192.168.0.11"
+    },
+    {
+        "timestamp": "2025-10-03 16:57:26",
+        "level": "WARNING",
+        "message": "Slow query detected on orders_db (took 1217 ms)"
+    },
+    {
+        "timestamp": "2025-10-03 16:57:27",
+        "level": "ERROR",
+        "message": "Authentication error for user Ana from 172.16.1.22"
+    },
+    {
+        "timestamp": "2025-10-03 16:57:28",
+        "level": "INFO",
+        "message": "HTTP 200 POST request to /login"
+    },
+    {
+        "timestamp": "2025-10-03 16:57:29",
+        "level": "ERROR",
+        "message": "HTTP 500 GET error at /profile"
+    },
+    {
+        "timestamp": "2025-10-03 16:57:30",
+        "level": "WARNING",
+        "message": "Unusual login attempt for user Joao from 192.168.0.10"
+    },
+    {
+        "timestamp": "2025-10-03 16:57:31",
+        "level": "ERROR",
+        "message": "Disk write failure on server 10.0.0.5"
+    },
+    {
+        "timestamp": "2025-10-03 16:57:32",
+        "level": "WARNING",
+        "message": "Slow query detected on analytics_db (took 640 ms)"
+    },
+    {
+        "timestamp": "2025-10-03 16:57:33",
+        "level": "INFO",
+        "message": "User Maria logged in from 172.16.1.22"
+    },
+    {
+        "timestamp": "2025-10-03 16:57:34",
+        "level": "ERROR",
+        "message": "HTTP 503 POST error at /profile"
+    },
+    {
+        "timestamp": "2025-10-03 16:57:35",
+        "level": "INFO",
+        "message": "HTTP 200 POST request to /profile"
+    }
+]
